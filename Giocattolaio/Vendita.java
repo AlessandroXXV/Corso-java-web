@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Vendita {
     
-    List<Giocattolo> giocattoli = new ArrayList<>(); 
     
-    public void aggiungiGiocattolo(Giocattolo giocattolo)
+    
+    public static void aggiungiGiocattolo(Giocattolo giocattolo, Cliente cliente)
     {
-        giocattoli.add(giocattolo); 
+        cliente.getGiochiCliente().add(giocattolo); 
     }
 
 }

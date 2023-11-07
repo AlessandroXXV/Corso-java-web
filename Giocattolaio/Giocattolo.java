@@ -3,14 +3,16 @@ package Giocattolaio;
 public class Giocattolo {
     private static Integer id = 1; 
     private String nome; 
-    private int prezzo; 
+    private double prezzo; 
     private int etaConsigliata;
+    private int disponibilita; 
 
-    public Giocattolo(int id, String nome, int prezzo, int etaConsigliata) {
+    public Giocattolo(String nome, double prezzo, int etaConsigliata, int disponibilita) {
         id++;
         this.nome = nome;
         this.prezzo = prezzo;
         this.etaConsigliata = etaConsigliata;
+        this.disponibilita = disponibilita; 
     }
 
     public int getId() {
@@ -26,11 +28,11 @@ public class Giocattolo {
         this.nome = nome;
     }
 
-    public int getPrezzo() {
+    public double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(int prezzo) {
+    public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
 
@@ -40,6 +42,18 @@ public class Giocattolo {
 
     public void setEtaConsigliata(int etaConsigliata) {
         this.etaConsigliata = etaConsigliata;
+    }
+
+    public static void setId(Integer id) {
+        Giocattolo.id = id;
+    }
+
+    public int getDisponibilita() {
+        return disponibilita;
+    }
+
+    public void setDisponibilita(int disponibilita) {
+        this.disponibilita = disponibilita;
     }     
 
     
