@@ -14,6 +14,15 @@ public class Giocattolo {
         this.etaConsigliata = etaConsigliata;
         this.disponibilita = disponibilita; 
     }
+    
+    @Override
+    public String toString() {
+        String descrizione="";
+        descrizione += "Nome Giocattolo: " + this.getNome();
+        descrizione += "Età consigliata: " + this.getEtaConsigliata();
+        descrizione += "\nPrezzo Euro: " + this.getPrezzo();
+        return descrizione;
+    }
 
     public int getId() {
         return id;

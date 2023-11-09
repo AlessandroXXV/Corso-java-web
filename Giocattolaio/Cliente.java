@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Cliente extends RegistroVendite{
+
+public class Cliente
+{
+    private static List<Cliente> listaClienti = new ArrayList<>();
+    
     private int id = 1; 
     private String nome; 
     private String email;
@@ -13,8 +17,6 @@ public class Cliente extends RegistroVendite{
     // Lista che salva il numero di acquisti di un cliente
     List<Giocattolo> numeroAcquisti = new ArrayList<>();
 
-    // Lista che memorizza il numero di clienti
-    List<Cliente> listaClienti = new ArrayList<>(); 
 
     // Costruttore
     public Cliente(String nome, String email) {
@@ -42,38 +44,49 @@ public class Cliente extends RegistroVendite{
     public void setEmail(String email) {
         this.email = email;
     } 
+    public static List<Cliente> getListaClienti() {
+        return listaClienti;
+    }
+    public static void setListaClienti(List<Cliente> listaClienti) {
+        Cliente.listaClienti = listaClienti;
+    }
+
 
     // Metodo per acquistare giochi
-    public void acquistaGioco(Giocattolo giocattolo, Cliente cliente)
+    public void acquistaGioco()
     {
-        Scanner scanner = new Scanner(System.in); 
-        double denaro;
-        int eta; 
-        System.out.print("Quanto denaro hai? ");
-        denaro = scanner.nextDouble(); 
-        System.out.print("Inserisci la tua eta...");
-        eta = scanner.nextInt(); 
-
-        // se il cliente ha il denaro e l'età minima può comprare il gioco, se c'è disponibilità del gioco
-        if((denaro >= giocattolo.getPrezzo()) && (eta >= giocattolo.getEtaConsigliata()) && giocattolo.getDisponibilita() > 0)
+        System.out.println("Che giocattolo vuoi acquistare? ");
+        for (Giocattolo giocattolo : Inventario.listaGiocattoli)
         {
-            System.out.println("Gioco acquistato con successo!");
-            // L'acquisto aggiunge il gioco ad una lista nella classe "Vendita"
-            Vendita.aggiungiGiocattolo(giocattolo, cliente);   
-            giocattolo.setDisponibilita(eta--); 
-        }else 
-        {
-            System.out.println("L'acquisto non e' andato a buon fine");
+            System.out.println(giocattolo.getNome() + " " + giocattolo.getPrezzo());
         }
+        Scanner scanner = new Scanner(System.in);
+        String scelta = scanner.nextLine();
 
+        for (Giocattolo giocattolo : Inventario.listaGiocattoli)
+        {
+            if (giocattolo.getNome().equals(scelta))
+            {
+                if (giocattolo.getDisponibilita() > 0)
+                {
+                    System.out.println("Giocattolo acquistato con successo");
+                    giochiCliente.add(giocattolo);
+                    numeroAcquisti.add(giocattolo);
+                    giocattolo.setDisponibilita(giocattolo.getDisponibilita() - 1);
+                    break;
+                }
+                else
+                {
+                    System.out.println("Giocattolo non disponibile");
+                    break;
+                }
+            }
+        }
+        scanner.close();
 
     }
-
-    @Override
-    void stampaListeClienti() {
-        for (Cliente cliente)
-        
-    }
+    
+    
 
 
 
