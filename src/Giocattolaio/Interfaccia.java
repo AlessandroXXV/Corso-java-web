@@ -53,7 +53,7 @@ public class Interfaccia {
             for (Cliente cliente : Cliente.getListaClienti()) {
                 if (nome.equals(cliente.getNome()) && email.equals(cliente.getEmail())) {
                     System.out.println("Accesso effettuato");
-                    operazioniCliente();
+                    operazioniCliente(cliente);
                     accessoRiuscito = true;
                     break; // Esci dal ciclo una volta trovata una corrispondenza
                 }
@@ -70,6 +70,8 @@ public class Interfaccia {
 
     
     static Cliente registratiCliente() {
+        System.out.println();
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("REGISTRAZIONE");
         System.out.println("Inserisci nome ed email");
@@ -81,15 +83,17 @@ public class Interfaccia {
         Cliente cliente = new Cliente(nome, email);
         Cliente.getListaClienti().add(cliente);
         System.out.println("Registrazione completata \n");
-        scanner.close();
+        // scanner.close();
         return cliente; // Ritorna il cliente appena registrato
         
     }
     
 
 
-    static void operazioniCliente()
+    static void operazioniCliente(Cliente cliente)
     {
+        System.out.println();
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Cosa vuoi fare?");
         System.out.println("Visualizza prodotti --> 1");
@@ -100,10 +104,12 @@ public class Interfaccia {
         switch (scelta) {
             case 1:
                 Inventario.mostraInventario();
-                operazioniCliente();
+                operazioniCliente(cliente);
                 break;
             case 2:
-
+                Cliente.acquistaGioco(cliente);
+                operazioniCliente(cliente);
+                break;
             case 62:
                 logout();
                 break;
@@ -113,6 +119,7 @@ public class Interfaccia {
 
     static void operazioniAdmin ()
     {
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Cosa vuoi fare?");
         System.out.println("Visualizza prodotti --> 1");
