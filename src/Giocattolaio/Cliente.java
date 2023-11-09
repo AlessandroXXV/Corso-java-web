@@ -14,8 +14,7 @@ public class Cliente
     private String email;
     private List<Giocattolo> giochiCliente = new ArrayList<>(); 
 
-    // Lista che salva il numero di acquisti di un cliente
-    List<Giocattolo> numeroAcquisti = new ArrayList<>();
+    
 
 
     // Costruttore
@@ -23,6 +22,9 @@ public class Cliente
         id++; 
         this.nome = nome;
         this.email = email; 
+
+        // Lista che salva il numero di acquisti di un cliente
+        List<Giocattolo> numeroAcquisti = new ArrayList<>();
     }
 
     // Getter & Setter
@@ -53,7 +55,7 @@ public class Cliente
 
 
     // Metodo per acquistare giochi
-    public void acquistaGioco()
+    public static void acquistaGioco(Cliente cliente)
     {
         System.out.println("Che giocattolo vuoi acquistare? ");
         for (Giocattolo giocattolo : Inventario.listaGiocattoli)
@@ -65,13 +67,12 @@ public class Cliente
 
         for (Giocattolo giocattolo : Inventario.listaGiocattoli)
         {
-            if (giocattolo.getNome().equals(scelta))
+            if (giocattolo.getNome().equalsIgnoreCase(scelta))
             {
                 if (giocattolo.getDisponibilita() > 0)
                 {
                     System.out.println("Giocattolo acquistato con successo");
-                    giochiCliente.add(giocattolo);
-                    numeroAcquisti.add(giocattolo);
+                    cliente.giochiCliente.add(giocattolo);
                     giocattolo.setDisponibilita(giocattolo.getDisponibilita() - 1);
                     break;
                 }
@@ -80,9 +81,13 @@ public class Cliente
                     System.out.println("Giocattolo non disponibile");
                     break;
                 }
+            }else
+            {
+                System.out.println("Giocattolo non trovato");
+                break;
             }
         }
-        scanner.close();
+        //scanner.close();
 
     }
     
@@ -99,13 +104,7 @@ public class Cliente
         this.giochiCliente = giochiCliente;
     }
 
-    public List<Giocattolo> getNumeroAcquisti() {
-        return numeroAcquisti;
-    }
 
-    public void setNumeroAcquisti(List<Giocattolo> numeroAcquisti) {
-        this.numeroAcquisti = numeroAcquisti;
-    }
 
     
 
