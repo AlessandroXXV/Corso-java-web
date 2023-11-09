@@ -45,7 +45,7 @@ public class Interfaccia {
 
         boolean accessoRiuscito = false;
 
-        if (nome.equals("AlessandroXXV") && email.equals("1234")) {
+        if (nome.equals("AlessandroXXV") && email.equals("12345")) {
             System.out.println("Accesso ADMIN effettuato");
             operazioniAdmin();
             accessoRiuscito = true;

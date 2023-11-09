@@ -12,7 +12,7 @@ public class Main {
         // Istanzio un oggetto della classe Inventario per popolare la lista di giocattoli
         Inventario inventario = new Inventario();
         
-        Admin admin = new Admin("Alessandro", "12345");
+        Admin admin = new Admin("AlessandroXXV", "12345");
 
         Cliente cliente1 = new Cliente("Alessandro", "1234"); 
         Cliente cliente2 = new Cliente("Gigio", "gigio@gmail.com"); 
